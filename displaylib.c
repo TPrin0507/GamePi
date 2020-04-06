@@ -1,12 +1,6 @@
 // Raspi SenseHAT 8x8 framebuffer 5-6-5 BGR
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <linux/fb.h>
-#include <sys/mman.h>
-#include <sys/ioctl.h>
+#include displaylib.h
 
 int main()
 {
