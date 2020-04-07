@@ -1,7 +1,7 @@
-#include "displaylib.c"
-#include "inputlib.c"
+#include "displaylib.cpp"
+#include "inputlib.cpp"
 
-void main(){
+int main(){
 	/*openFramebuffer();
 	writeAllPixel(black);
 	writePixel(5, 6, magenta);
@@ -12,4 +12,6 @@ void main(){
 		readInputfile();
 	}
 	closeInputfile();
+
+	return 1;
 }
