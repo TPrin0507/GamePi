@@ -15,6 +15,14 @@ void writePixel(int x, int y, rgb colour){
 	*((unsigned short int*)(fbp + location)) = t;
 }
 
+void writeAllPixel(rgb colour){
+	for (int y = 0; y < 8; y++){
+		for(int x = 0; x < 8; x++){
+			writePixel(x, y, colour);
+		}
+	}
+}
+
 int openFramebuffer()
 {
 

@@ -2,6 +2,7 @@
 
 void main(){
 	openFramebuffer();
-	writePixel(7, 7, white);
+	writeAllPixel(black);
+	writePixel(5, 6, magenta);
 	closeFramebuffer();
 }
