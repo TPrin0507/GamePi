@@ -29,20 +29,18 @@ void readInputfile(){
 	}
 	else{
 	
-	printf("Vor Ausgabe");
-	
 		for(index = 0; index < readdev / SIZESTRUCT; index++){
 			if(inputevent[index].type == EV_KEY){
 			
 				switch(inputevent[index].value){
 				
-					case 0: printf("%i Key Released\n", imputevent[]);
+					case 0: printf("%i Key Released\n", inputevent[index].code);
 						break;
 
-					case 1: printf("Key Pressed\n");
+					case 1: printf("%i Key Pressed\n", inputevent[index].code);
 						break;
 
-					case 2: printf("Key Hold\n");
+					case 2: printf("%i Key Hold\n", inputevent[index].code);
 						break;
 
 					default: perror("Unknown Code");
