@@ -8,13 +8,17 @@
 #include <sys/mman.h>
 #include <sys/ioctl.h>
 
+int fbfd = 0;
+char *fbp = 0;
+long int screensize = 0;
+
 int main()
 {
-    int fbfd = 0;
+    //int fbfd = 0;
     struct fb_var_screeninfo vinfo;
     struct fb_fix_screeninfo finfo;
-    long int screensize = 0;
-    char *fbp = 0;
+    //long int screensize = 0;
+    //char *fbp = 0;
     int x = 0, y = 0;
     long int location = 0;
 
@@ -68,8 +72,8 @@ int main()
                 *(fbp + location + 3) = 0;      // No transparency
                 //location += 4;
             } else  { //assume 16bpp*/
-                int b = 0xFF;
-                int g = 0xFF;
+                int b = 0x00;
+                int g = 0x00;
                 int r = 0x00;
                 unsigned short int t = r<<11 | g << 5 | b;
                 *((unsigned short int*)(fbp + location)) = t;
