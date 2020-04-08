@@ -5,6 +5,7 @@
 #include <linux/fb.h>
 #include <sys/mman.h>
 #include <sys/ioctl.h>
+#include <iostream>
 #include "colourlib.h"
 
 

@@ -1,6 +1,9 @@
 #include "inputlib.h"
 
-int filedev;
+using namespace std;
+
+int filedev, index;
+struct input_event inputevent[64];
 
 void openInputfile(){
 	int version;
@@ -18,8 +21,7 @@ void openInputfile(){
 
 void readInputfile(){
 	
-	int readdev, index;
-	struct input_event inputevent[64];
+	int readdev;
 	readdev = read(filedev, inputevent, sizeof(SIZESTRUCT) * 64);
 
 	if(readdev < (int) sizeof(SIZESTRUCT)){
@@ -34,13 +36,13 @@ void readInputfile(){
 			
 				switch(inputevent[index].value){
 				
-					case 0: printf("%i Key Released\n", inputevent[index].code);
+					case 0: cout << getKey()  << " Key Released" << endl;
 						break;
 
-					case 1: printf("%i Key Pressed\n", inputevent[index].code);
+					case 1: cout << getKey() << " Key Pressed" << endl;
 						break;
 
-					case 2: printf("%i Key Hold\n", inputevent[index].code);
+					case 2: cout << getKey() << " Key Hold" << endl;
 						break;
 
 					default: perror("Unknown Code");
@@ -52,6 +54,30 @@ void readInputfile(){
 		}
 	
 	}
+}
+
+string getKey(){
+	switch(inputevent[index].code){
+		case 103: return "Up";
+			  break;
+	
+		case 108: return "Down";
+			  break;
+
+		case 106: return "Right";
+			  break;
+
+		case 105: return "Left";
+			  break;
+
+		case 28: return "Enter";
+			 break;
+
+		default: perror("Error while getting Key Code");
+			 return NULL;
+	}
+
+	
 }
 
 void closeInputfile(){

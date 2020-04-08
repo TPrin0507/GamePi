@@ -4,6 +4,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <iostream>
+#include <string>
 
 #define BITS_PER_LONG (sizeof(long)*8)
 #define NBITS(x) ((((x)-1)/BITS_PER_LONG)+1)
@@ -11,5 +13,7 @@
 
 void openInputfile();
 void readInputfile();
-void  closeInputfile();
+std::string getKey();
+void closeInputfile();
+
 

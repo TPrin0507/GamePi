@@ -2,6 +2,8 @@
 
 #include "displaylib.h"
 
+using namespace std;
+
 int fbfd = 0;
 long int screensize = 0;
 char *fbp = 0;
@@ -57,7 +59,7 @@ int openFramebuffer()
         perror("Error: failed to map framebuffer device to memory");
         exit(4);
     }
-    printf("The framebuffer device was mapped to memory successfully.\n");
+    cout << "The framebuffer device was mapped to memory successfully." << endl;
 
     return 0;
 }
