@@ -1,5 +1,17 @@
-#include <RTIMULib.h>
+#ifndef GYROLIB_H
+#define GYROLIB_H
 
-void activateAccelo();
+#include <RTIMUSettings.h>
+#include <RTFusionRTQF.h>
+#include <iostream>
 
-void getAcceloData();
+void activateIMU();
+
+void activateGyro();
+
+void getGyroData();
+
+
+
+
+#endif

@@ -10,6 +10,13 @@ char *fbp = 0;
 struct fb_var_screeninfo vinfo;
 struct fb_fix_screeninfo finfo;
 
+
+void writeFrame(rgb colour){
+
+
+} 
+
+
 void writePixel(int x, int y, rgb colour){
 	long int location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
 			    (y+vinfo.yoffset) * finfo.line_length;

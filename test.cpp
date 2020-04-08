@@ -1,17 +1,21 @@
-#include "displaylib.cpp"
-#include "inputlib.cpp"
+#include "displaylib.h"
+#include "inputlib.h"
 
 int main(){
-	/*openFramebuffer();
-	writeAllPixel(black);
-	writePixel(5, 6, magenta);
-	closeFramebuffer();*/
+	
+	openFramebuffer();
+	writeAllPixel(darkyellow);
+	closeFramebuffer();
 
 	openInputfile();
 	while(1){
 		readInputfile();
 	}
 	closeInputfile();
+
+	/*activateIMU();
+	activateGyro();
+	getGyroData();*/
 
 	return 1;
 }

@@ -1,3 +1,6 @@
+#ifndef INPUTLIB_H
+#define INPUTLIB_H
+
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <linux/input.h>
@@ -16,4 +19,4 @@ void readInputfile();
 std::string getKey();
 void closeInputfile();
 
-
+#endif

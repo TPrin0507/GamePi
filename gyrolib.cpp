@@ -1,13 +1,35 @@
-#include "accerolib.h"
+#include "gyrolib.h"
 
-void activateAccelo(){
+using namespace std;
+
+RTIMUSettings *settings = new RTIMUSettings("RTIMULib");
+
+RTIMU *imu = RTIMU::createIMU(settings);
+
+RTFusionRTQF fusion;
+
+void activateIMU(){
 	
-	imu->ImuInit();
+	if((imu == NULL) || (imu->IMUType() == RTIMU_TYPE_NULL)){
+		cout << "No IMU found" << endl;
+		return ;
+	}
 
-	imu->setAccelEnable(true);
+	imu->IMUInit();
+
 }
 
-void getAcceloData(){
+void activateGyro(){
 
+	fusion.setSlerpPower(0);
+	fusion.setGyroEnable(true);
+    
+}
 
+void getGyroData(){
+	while(imu->imuread()){
+	
+		RTMath::display("gyro: ", (RTVector3&)imu->getGyro());
+
+	}
 }
