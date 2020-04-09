@@ -14,10 +14,9 @@
 
 
 void writeFrame(rgb colour);
-void writeSquare(int x, int y, rgb colour);
+void writeSquare(int x, int y, int sidelength, rgb colour);
 void writeCircle();
-void writeHorizontalLine();
-void writeVerticalLine();
+void writeLine(int x, int y, int x1, int y1, rgb colour);
 void writeTriangle();
 void clearScreen();
 void toggleBrightness();

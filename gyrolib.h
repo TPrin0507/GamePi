@@ -3,6 +3,7 @@
 
 #include <RTIMUSettings.h>
 #include <RTFusionRTQF.h>
+#include <RTIMULSM9DS1.h>
 #include <iostream>
 
 void activateIMU();
