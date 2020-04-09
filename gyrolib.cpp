@@ -1,17 +1,13 @@
 #include "gyrolib.h"
 
-using namespace std;
-
 RTIMUSettings *settings = new RTIMUSettings("RTIMULib");
 
 RTIMU *imu = RTIMU::createIMU(settings);
 
-RTFusionRTQF fusion;
-
 void activateIMU(){
 	
 	if((imu == NULL) || (imu->IMUType() == RTIMU_TYPE_NULL)){
-		cout << "No IMU found" << endl;
+	 	printf("No IMU found");
 		return ;
 	}
 
@@ -21,15 +17,41 @@ void activateIMU(){
 
 void activateGyro(){
 
-	fusion.setSlerpPower(0);
-	fusion.setGyroEnable(true);
+	imu->setSlerpPower(0.02);
+	imu->setGyroEnable(true);
     
 }
 
 void getGyroData(){
-	while(imu->imuread()){
 	
-		RTMath::display("gyro: ", (RTVector3&)imu->getGyro());
+	uint64_t rateTimer, displayTimer, now;
+	
+	rateTimer = displayTimer = RTMath::currentUSecsSinceEpoch();
+	
+	while(1){
+	
+		usleep(imu->IMUGetPollInterval() * 200000);
+
+		while(imu->IMURead()){
+		
+			RTIMU_DATA imuData = imu->getIMUData();
+
+			now = RTMath::currentUSecsSinceEpoch();
+
+			//if((now - displayTimer) < 500000) {
+			
+				//printf("%s\n", RTMath::displayDegrees("", imuData.fusionPose));
+                
+                printf("x: %f y: %f z: %f\n\n", (imuData.gyro.x()*RTMATH_RAD_TO_DEGREE)/100, (imuData.gyro.y()*RTMATH_RAD_TO_DEGREE)/100, (imuData.gyro.z()*RTMATH_RAD_TO_DEGREE)/100);
+
+                printf("x: %f y: %f z: %f\n\n\n", (imuData.accel.x()*RTMATH_DEGREE_TO_RAD)*10000, (imuData.accel.y()*RTMATH_DEGREE_TO_RAD)*10000, (imuData.accel.z()*RTMATH_DEGREE_TO_RAD)*10000);
+			
+                fflush(stdout);
+                displayTimer = now;
+                
+			//}
+		
+		}
 
 	}
 }

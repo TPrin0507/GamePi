@@ -4,10 +4,10 @@
 
 int main(){
 	
-	openFramebuffer();
+	/*openFramebuffer();
 	clearScreen();
 	writeLine(0, 0, 3, 0, blue);
-	closeFramebuffer();
+	closeFramebuffer();*/
 
 	/*openInputfile();
 	while(1){
@@ -15,9 +15,9 @@ int main(){
 	}
 	closeInputfile();*/
 
-	/*activateIMU();
+	activateIMU();
 	activateGyro();
-	getGyroData();*/
+	getGyroData();
 
 	return 1;
 }
