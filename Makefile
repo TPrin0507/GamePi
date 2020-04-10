@@ -1,9 +1,4 @@
-LDFLAGS += \
-	  -lRTIMULib
-
-test:	test.cpp gyrolib.cpp displaylib.cpp inputlib.cpp	
-
-RTIMULibDrive11: RTIMULibDrive11.cpp
+test:	test.cpp senselib.cpp displaylib.cpp inputlib.cpp	
 
 clean: 
 	rm test

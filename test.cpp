@@ -1,6 +1,6 @@
 #include "displaylib.h"
 #include "inputlib.h"
-#include "gyrolib.h"
+#include "senselib.h"
 
 int main(){
 	
@@ -15,9 +15,12 @@ int main(){
 	}
 	closeInputfile();*/
 
-	activateIMU();
-	activateGyro();
-	getGyroData();
+	//while(1){
+		
+		openI2C();
+		readGyro();
 
+		sleep(2);
+	//}
 	return 1;
 }

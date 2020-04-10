@@ -11,7 +11,7 @@ struct fb_var_screeninfo vinfo;
 struct fb_fix_screeninfo finfo;
 
 
-void writeFrame(rgb colour){
+/*oid writeFrame(rgb colour){
 	for(int y = 0; y < 8; y++){
 		for(int x = 0; x < 8; x++){
 			if((y == 0 || y == 7)|| ((y > 0 || y < 7)&&(x == 0 || x == 7))){
@@ -65,7 +65,7 @@ void writeDiagonalLine(int x, int y, int x1, int y1, rgb colour){
 		}
 	}
 
-}
+}*/
 
 void writePixel(int x, int y, rgb colour){
 	long int location = (x+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
@@ -82,10 +82,10 @@ void writeAllPixel(rgb colour){
 	}
 }
 
-void clearScreen()
+/*void clearScreen()
 {
 	writeAllPixel(black);
-}
+}*/
 
 int openFramebuffer()
 {
