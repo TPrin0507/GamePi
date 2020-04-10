@@ -13,7 +13,14 @@ void openI2C(){
 	}
 }
 
-int readGyro(){
+int enableGyro(){
+
+	
+
+}
+
+
+int readRegister(unsigned char reg){
 	
 	unsigned char outbuf[1], inbuf[1];
 	struct i2c_rdwr_ioctl_data packets;
@@ -23,7 +30,7 @@ int readGyro(){
 	msg[0].flags = 0;
 	msg[0].len = sizeof(outbuf);
 	msg[0].buf = outbuf;
-	outbuf[0] = 0x0F;
+	outbuf[0] = reg;
 
 	msg[1].addr = 0x6A;
 	msg[1].flags = I2C_M_RD | I2C_M_NOSTART;
@@ -44,4 +51,9 @@ int readGyro(){
 	printf("reg[0x%02x] pitch is 0x%02x \n", outbuf[0], inbuf[0]);
 
 	return 0;
+}
+
+void readGyro(){
+
+
 }

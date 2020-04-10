@@ -15,12 +15,12 @@ int main(){
 	}
 	closeInputfile();*/
 
-	//while(1){
+	while(1){
 		
 		openI2C();
-		readGyro();
+		readRegister(WHO_AM_I);
 
 		sleep(2);
-	//}
+	}
 	return 1;
 }
