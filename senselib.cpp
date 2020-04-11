@@ -28,19 +28,35 @@ int enableGyro(){
 	sleep(1);
 
 	//enable xyz gyro
-	writeRegister(CTRL_REG_GYRO, 0xC0);
+	writeRegister(CTRL_REG_GYRO, 0x40);
 
 	return 0;
 
 }
 
 int readGyro(){
+	
+	unsigned char gyro_x, gyro_x_h, gyro_x_l, gyro_y, gyro_z;
 
-	printf("Pitch is 0x%02x ", readRegister(OUT_X_L_G));
+	gyro_x = readRegister(OUT_X_H_G);
+	gyro_x = gyro_x << 8;
+	gyro_x = gyro_x | readRegister(OUT_X_L_G);
 
-	printf("Yaw is 0x%02x ", readRegister(OUT_Y_L_G));
+	gyro_x_h = readRegister(OUT_X_H_G);
+	gyro_x_l = readRegister(OUT_X_L_G);
 
-	printf("Roll is 0x%02x\n", readRegister(OUT_Z_L_G));
+	gyro_y = readRegister(OUT_Y_H_G);
+	gyro_y <<=8;
+	gyro_y |= readRegister(OUT_Y_L_G);
+
+	gyro_z = readRegister(OUT_Z_H_G);
+	gyro_z <<=8;
+	gyro_z |= readRegister(OUT_Z_L_G);
+
+
+	printf("Pitch is 0x%x  High is 0x%x	 Low is 0x%x\n", gyro_x, gyro_x_h, gyro_x_l);
+	
+	//printf("Pitch Low  is 0x%02x in Hex", gyro_x);
 
 	return 0;
 

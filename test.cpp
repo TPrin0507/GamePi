@@ -20,9 +20,6 @@ int main(){
 
 	while(1){
 		
-		printf("before reading");
-
-		//readRegister(WHO_AM_I);
 		readGyro();
 		sleep(2);
 	}
