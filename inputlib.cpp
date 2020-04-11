@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int filedev, index;
+int filedev, i;
 struct input_event inputevent[64];
 
 void openInputfile(){
@@ -31,10 +31,10 @@ void readInputfile(){
 	}
 	else{
 	
-		for(index = 0; index < readdev / SIZESTRUCT; index++){
-			if(inputevent[index].type == EV_KEY){
+		for(i = 0; i < readdev / SIZESTRUCT; i++){
+			if(inputevent[i].type == EV_KEY){
 			
-				switch(inputevent[index].value){
+				switch(inputevent[i].value){
 				
 					case 0: cout << getKey()  << " Key Released" << endl;
 						break;
@@ -57,7 +57,7 @@ void readInputfile(){
 }
 
 string getKey(){
-	switch(inputevent[index].code){
+	switch(inputevent[i].code){
 		case 103: return "Up";
 			  break;
 	
