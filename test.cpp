@@ -16,12 +16,12 @@ int main(){
 	closeInputfile();*/
 
 	openI2C();
-	enableGyro();
+	enableSensor(CTRL_REG_ACCEL);
 
 	while(1){
 		
-		readGyro();
-		sleep(2);
+		readSensor();
+		sleep(1);
 	}
 
 	closeI2C();

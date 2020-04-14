@@ -18,15 +18,26 @@
 #define OUT_Z_L_G 0x1C
 #define OUT_Z_H_G 0x1D
 #define CTRL_REG_GYRO 0x10
+
+#define OUT_X_L_XL 0x28
+#define OUT_X_H_XL 0x29
+#define OUT_Y_L_XL 0x2A
+#define OUT_Y_H_XL 0x2B
+#define OUT_Z_L_XL 0x2C
+#define OUT_Z_H_XL 0x2D
+#define CTRL_REG_ACCEL 0x20
+
 #define CTRL_REG8 0x22
 
 void openI2C();
 
 void closeI2C();
 
-int enableGyro();
+int enableSensor(int CTRL_REG_SENSOR);
 
-int readGyro();
+int readSensor();
+
+int convertToSigned(int hex);
 
 unsigned char readRegister(unsigned char reg);
 

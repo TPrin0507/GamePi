@@ -19,7 +19,7 @@ void closeI2c(){
 
 }
 
-int enableGyro(){
+int enableSensor(int CTRL_REG_SENSOR){
 
 	//reset gyro and accel
 	writeRegister(CTRL_REG8, 0x05);
@@ -27,41 +27,105 @@ int enableGyro(){
 	//wait until reboot finished
 	sleep(1);
 
-	//enable xyz gyro
-	writeRegister(CTRL_REG_GYRO, 0x40);
-
+	
+	if(CTRL_REG_SENSOR == CTRL_REG_GYRO){
+		//enable xyz gyro
+		writeRegister(CTRL_REG_GYRO, 0x38);
+	}
+	else if(CTRL_REG_SENSOR == CTRL_REG_ACCEL){
+		//enable xyz accel
+		writeRegister(CTRL_REG_ACCEL, 0x20);
+	}
 	return 0;
 
 }
 
-int readGyro(){
+int readSensor(){
 	
-	unsigned char gyro_x, gyro_x_h, gyro_x_l, gyro_y, gyro_z;
-
-	gyro_x = readRegister(OUT_X_H_G);
-	gyro_x = gyro_x << 8;
-	gyro_x = gyro_x | readRegister(OUT_X_L_G);
-
-	gyro_x_h = readRegister(OUT_X_H_G);
-	gyro_x_l = readRegister(OUT_X_L_G);
-
-	gyro_y = readRegister(OUT_Y_H_G);
-	gyro_y <<=8;
-	gyro_y |= readRegister(OUT_Y_L_G);
-
-	gyro_z = readRegister(OUT_Z_H_G);
-	gyro_z <<=8;
-	gyro_z |= readRegister(OUT_Z_L_G);
-
-
-	printf("Pitch is 0x%x  High is 0x%x	 Low is 0x%x\n", gyro_x, gyro_x_h, gyro_x_l);
 	
+unsigned char accel_x_h, accel_x_l, accel_y_h, accel_y_l, accel_z_h, accel_z_l;
+
+	int16_t accel_x, accel_y, accel_z;
+
+	float x, y;
+	
+		for(int i = 0; i < 20; i++){
+			accel_x_h = readRegister(OUT_X_H_XL);
+			accel_x_l = readRegister(OUT_X_L_XL);
+
+			accel_x = accel_x_h << 8;
+			accel_x = accel_x | accel_x_l;
+			
+			x = accel_x / 32768.0;
+			
+			x += x;
+		}
+
+	x = x / 20;
+
+	printf("Pitch is %f\n", x);
+
+
+	/*unsigned char gyro_x_h, gyro_x_l, gyro_y_h, gyro_y_l, gyro_z_h, gyro_z_l;
+
+	int16_t gyro_x, gyro_y, gyro_z;
+
+	float x, y;
+	
+		for(int i = 0; i < 20; i++){
+			gyro_x_h = readRegister(OUT_X_H_G);
+			gyro_x_l = readRegister(OUT_X_L_G);
+
+			gyro_x = gyro_x_h << 8;
+			gyro_x = gyro_x | gyro_x_l;
+			
+			x = gyro_x / 32768.0 * 2000;
+			
+			x += x;
+		}
+
+	x = x / 20;
+	for(int i = 0; i < 20; i++){
+		gyro_y_h = readRegister(OUT_Y_H_G);
+		gyro_y_l = readRegister(OUT_Y_L_G);
+
+		gyro_y = gyro_y_h << 8;
+		gyro_y = gyro_y | gyro_y_l;
+			
+		y = gyro_y / 32768.0 * 2000;
+			
+		y += y;
+	}
+
+	y = y / 20;
+
+
+	gyro_z_h = readRegister(OUT_Z_H_G);
+	gyro_z_l = readRegister(OUT_Z_L_G);
+
+	gyro_z = gyro_z_h << 8 ;
+	gyro_z = gyro_z | gyro_z_l;
+
+	printf("Pitch is %f , Roll is %f\n", x, y);
+
+	//printf("Pitch is 0x%04x  High is 0x%02x	 Low is 0x%02x\n", gyro_x, gyro_x_h, gyro_x_l);
+	
+	
+	//printf("Roll  is 0x%04x  High is 0x%02x	 Low is 0x%02x\n", gyro_y, gyro_y_h, gyro_y_l);
+
+	
+	//printf("Pitch is 0x%04x  High is 0x%02x	 Low is 0x%02x\n\n", gyro_z, gyro_z_h, gyro_z_l);
+
 	//printf("Pitch Low  is 0x%02x in Hex", gyro_x);
-
+*/
 	return 0;
 
 }
 
+int convertToSigned(int hex){
+
+	return 0;
+}
 
 unsigned char readRegister(unsigned char reg){
 	
